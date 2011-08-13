@@ -1,0 +1,13 @@
+{
+  "name":"windtunnel",
+  "version":"0.0.1",
+  "dependencies": {
+    "jsdom":"",
+    "htmlparser": "",
+    "nomnom": ""
+  },
+  "scripts": {
+    "build": "rake"
+  }
+
+}
