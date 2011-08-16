@@ -1,2 +1,34 @@
-#!/usr/bin/env bash
-/usr/bin/env node `dirname $0`/../app/windtunnel.js $@
+#!/usr/bin/env node
+
+var fs = require('fs'),
+    sys = require('sys'),
+    path = require('path'),
+    nomnom = require('nomnom')
+
+require.paths.unshift(path.join(__dirname, '..', 'lib'))
+
+var wt = require('windtunnel')
+
+var cmdLine = {
+  version: {
+    string: "--version",
+    help: "print version",
+    callback: function() {
+      return "Wind Tunnel version " + wt.VERSION;
+    }
+  },
+  path: {
+    position: 0,
+    help: "file or directory"
+  },
+  summarizer: {
+    string: "--summarizer",
+    help: "summarizer to use [console/html]",
+    "default": 'console'
+  }
+}
+
+var options = nomnom.opts(cmdLine),
+    parsed  = options.parseArgs()
+
+wt.run(parsed)

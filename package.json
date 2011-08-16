@@ -1,9 +1,15 @@
 {
-  "name":"windtunnel",
-  "version":"0.0.1",
-  "dependencies": {
-    "jsdom":"",
-    "htmlparser": "",
-    "nomnom": ""
-  }
+  "name"            : "windtunnel",
+  "description"     : "Easy JavaScript testing",
+  "url"             : "https://github.com/thatdutchguy/windtunnel",
+  "version"         : "0.0.1",
+  "Author"          : "Daniël van de Burgt <thatdutchguy@secretlymexico.com>",
+  "bin"             : { "wt": "./bin/wt" },
+  "main"            : "./lib/windtunnel/index",
+  "dependencies"    : {
+                        "jsdom":"",
+                        "htmlparser": "",
+                        "nomnom": ""
+                      },
+  "engines"         : { "node": ">=0.4.0" }
 }
