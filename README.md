@@ -13,5 +13,24 @@ Output format can be text or html (a la RSpec).
 Disclaimer
 ==========
 
-Don't use this yet. It's not done. There are no tests yet. I hammered this out while attending LSRC V. I'm still figuring 
-out this node.js thing and am not sure how I'm going to structure this yet. Stuff will change. Stuff will break.
+There are no tests yet. I hammered this out while attending LSRC V. I'm still figuring out this node.js thing and 
+am not sure how I'm going to structure this yet. Stuff will change. Stuff will break.
+
+
+Install
+=======
+    npm install -g windtunnel
+  
+Usage
+=====
+    wt <path> [options]
+
+Examples
+--------
+    wt jspec/
+
+    wt jspec/ --summarizer html
+
+    wt jspec/awesome_spec.js --summarizer html
+
+The HMTL summarizer has been tailored to work well with TextMate.

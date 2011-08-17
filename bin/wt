@@ -5,16 +5,14 @@ var fs = require('fs'),
     path = require('path'),
     nomnom = require('nomnom')
 
-require.paths.unshift(path.join(__dirname, '..', 'lib'))
-
-var wt = require('windtunnel')
+var wt = require(path.join(__dirname, '..', 'lib', 'windtunnel'))
 
 var cmdLine = {
   version: {
     string: "--version",
     help: "print version",
     callback: function() {
-      return "Wind Tunnel version " + wt.VERSION;
+      return "Wind Tunnel version " + wt.version.join('.');
     }
   },
   path: {
