@@ -8,5 +8,5 @@
   "bin"             : { "wt": "./bin/wt" },
   "main"            : "./lib/windtunnel/index",
   "engines"         : { "node": ">= 0.4.0" },
-  "dependencies"    : { "nomnom": ">= 0.6.0", "jsdom": ">= 0.2.0" }
+  "dependencies"    : { "nomnom": ">= 0.6.0", "jsdom": ">= 0.2.0", "glob": ">= 2.0.7" }
 }
