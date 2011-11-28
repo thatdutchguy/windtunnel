@@ -92,7 +92,6 @@ jasmine.ExpectationResult = function(params) {
 
   this.message = this.passed_ ? 'Passed.' : params.message;
   this.trace = this.passed_ ? '' : new Error(this.message);
-  this.error = params.error
 };
 
 jasmine.ExpectationResult.prototype.toString = function () {
@@ -1963,8 +1962,7 @@ jasmine.Spec.prototype.waitsFor = function(latchFunction, optional_timeoutMessag
 jasmine.Spec.prototype.fail = function (e) {
   var expectationResult = new jasmine.ExpectationResult({
     passed: false,
-    message: e ? jasmine.util.formatException(e) : 'Exception',
-    error: e
+    message: e ? jasmine.util.formatException(e) : 'Exception'
   });
   this.results_.addResult(expectationResult);
 };
@@ -2419,5 +2417,5 @@ jasmine.version_= {
   "major": 1,
   "minor": 0,
   "build": 1,
-  "revision": 1288183920
+  "revision": 1286311016
 };

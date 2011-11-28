@@ -87,3 +87,7 @@ body {
 .example .backtrace {
   color: #000;
 }
+.example .log {
+  background: #fff;
+  color: #000;
+}
