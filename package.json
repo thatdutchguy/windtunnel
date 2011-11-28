@@ -3,10 +3,10 @@
   "dependencies"    : { "nomnom": "" },
   "description"     : "Easy JavaScript testing",
   "url"             : "https://github.com/thatdutchguy/windtunnel",
-  "version"         : "0.0.4",
+  "version"         : "0.0.5pre2",
   "author"          : "Daniël van de Burgt <thatdutchguy@secretlymexico.com>",
   "bin"             : { "wt": "./bin/wt" },
   "main"            : "./lib/windtunnel/index",
   "engines"         : { "node": ">= 0.4.0" },
-  "dependencies"    : { "nomnom": ">= 0.6.0", "jsdom": "0.2.0", "glob": ">= 2.0.7" }
+  "dependencies"    : { "nomnom": ">= 0.6.0", "jsdom": ">= 0.2.0", "glob": ">= 2.0.7" }
 }
