@@ -64,9 +64,10 @@ describe("jasmine.Env", function() {
             "major": 1,
             "minor": 9,
             "build": 7,
+            "release_candidate": "1",
             "revision": 8
           };
-          expect(env.versionString()).toEqual("1.9.7 revision 8");
+          expect(env.versionString()).toEqual("1.9.7.rc1 revision 8");
         });
 
         it("should return a nice string when version is unknown", function() {
@@ -108,7 +109,7 @@ describe("jasmine.Env", function() {
 
         it("should give custom equality testers precedence", function() {
           expect(env.equals_('abc', 'abc')).toBeFalsy();
-          var o = new Object();
+          var o = {};
           expect(env.equals_(o, o)).toBeFalsy();
         });
       });
