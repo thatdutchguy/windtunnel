@@ -3,7 +3,7 @@
   "dependencies"    : { "nomnom": "" },
   "description"     : "Easy JavaScript testing",
   "url"             : "https://github.com/thatdutchguy/windtunnel",
-  "version"         : "0.0.6",
+  "version"         : "0.0.7",
   "author"          : "Daniël van de Burgt <thatdutchguy@secretlymexico.com>",
   "bin"             : { "wt": "./bin/wt" },
   "main"            : "./lib/windtunnel/index",
