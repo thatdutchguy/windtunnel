@@ -13,7 +13,7 @@ Output format can be text or html (a la RSpec).
 Disclaimer
 ==========
 
-There are no tests yet. I hammered this out while attending LSRC V. I'm still figuring out this node.js thing and 
+I hammered this out while attending LSRC V. I'm still figuring out this node.js thing and 
 am not sure how I'm going to structure this yet. Stuff will change. Stuff will break.
 
 
