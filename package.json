@@ -8,5 +8,5 @@
   "bin"             : { "wt": "./bin/wt" },
   "main"            : "./lib/windtunnel/index",
   "engines"         : { "node": ">= 0.6.0" },
-  "dependencies"    : { "nomnom": "1.5.1", "jsdom":"0.2.13", "glob":"3.1.9", "coffee-script":"1.3.1" }
+  "dependencies"    : { "nomnom": "1.5.1", "jsdom":"0.2.13", "glob":"3.1.9", "coffee-script":"1.3.1", "contextify" : "0.1.x" }
 }
