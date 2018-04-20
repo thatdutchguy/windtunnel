@@ -1,17 +1,15 @@
 #!/usr/bin/env node
 
-var fs = require('fs'),
-    util = require('util'),
-    path = require('path'),
-    nomnom = require('nomnom')
+var path = require('path'),
+  nomnom = require('nomnom');
 
-var wt = require(path.join(__dirname, '..', 'lib', 'windtunnel'))
+var wt = require(path.join(__dirname, '..', 'lib', 'windtunnel'));
 
 var cmdLine = {
   version: {
     string: "--version",
     help: "print version",
-    callback: function() {
+    callback: function () {
       return "Wind Tunnel version " + wt.version.join('.');
     }
   },
@@ -24,9 +22,9 @@ var cmdLine = {
     help: "summarizer to use [console/html]",
     "default": 'console'
   }
-}
+};
 
 var options = nomnom.opts(cmdLine),
-    parsed  = options.parseArgs()
+  parsed = options.parseArgs();
 
-wt.run(parsed)
+wt.run(parsed);

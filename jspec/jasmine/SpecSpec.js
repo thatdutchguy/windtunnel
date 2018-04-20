@@ -1,6 +1,6 @@
 describe('Spec', function () {
   var env, suite;
-  beforeEach(function() {
+  beforeEach(function () {
     env = new jasmine.Env();
     env.updateInterval = 0;
     suite = new jasmine.Suite(env, 'suite 1');
@@ -94,7 +94,7 @@ describe('Spec', function () {
 
       it('a spec with no expectations will return true', function () {
         var specWithoutExpectations = new jasmine.Spec(env, suite);
-        specWithoutExpectations.runs(function() {
+        specWithoutExpectations.runs(function () {
 
         });
         specWithoutExpectations.execute();
@@ -106,16 +106,16 @@ describe('Spec', function () {
       });
     });
 
-    it("includes log messages, which may contain arbitary objects", function() {
-      spec.runs(function() {
+    it("includes log messages, which may contain arbitary objects", function () {
+      spec.runs(function () {
         this.log("here's some log message", {key: 'value'}, 123);
       });
       spec.execute();
       var items = results.getItems();
       expect(items).toEqual([
-          jasmine.any(jasmine.ExpectationResult),
-          jasmine.any(jasmine.ExpectationResult),
-          jasmine.any(jasmine.MessageResult)
+        jasmine.any(jasmine.ExpectationResult),
+        jasmine.any(jasmine.ExpectationResult),
+        jasmine.any(jasmine.MessageResult)
       ]);
       var logResult = items[2];
       expect(logResult.values).toEqual(["here's some log message", {key: 'value'}, 123]);

@@ -1,7 +1,7 @@
-describe("jasmine.MultiReporter", function() {
+describe("jasmine.MultiReporter", function () {
   var multiReporter, fakeReporter1, fakeReporter2;
 
-  beforeEach(function() {
+  beforeEach(function () {
     multiReporter = new jasmine.MultiReporter();
     fakeReporter1 = jasmine.createSpyObj("fakeReporter1", ["reportSpecResults"]);
     fakeReporter2 = jasmine.createSpyObj("fakeReporter2", ["reportSpecResults", "reportRunnerStarting"]);
@@ -9,18 +9,18 @@ describe("jasmine.MultiReporter", function() {
     multiReporter.addReporter(fakeReporter2);
   });
 
-  it("should support all the method calls that jasmine.Reporter supports", function() {
+  it("should support all the method calls that jasmine.Reporter supports", function () {
     var delegate = {};
     multiReporter.addReporter(delegate);
 
     this.addMatchers({
-      toDelegateMethod: function(methodName) {
+      toDelegateMethod: function (methodName) {
         delegate[methodName] = jasmine.createSpy(methodName);
         this.actual[methodName]("whatever argument");
 
-        return delegate[methodName].wasCalled && 
-               delegate[methodName].mostRecentCall.args.length == 1 && 
-               delegate[methodName].mostRecentCall.args[0] == "whatever argument";
+        return delegate[methodName].wasCalled &&
+          delegate[methodName].mostRecentCall.args.length == 1 &&
+          delegate[methodName].mostRecentCall.args[0] == "whatever argument";
       }
     });
 
@@ -32,13 +32,13 @@ describe("jasmine.MultiReporter", function() {
     expect(multiReporter).toDelegateMethod('log');
   });
 
-  it("should delegate to any and all subreporters", function() {
+  it("should delegate to any and all subreporters", function () {
     multiReporter.reportSpecResults('blah', 'foo');
     expect(fakeReporter1.reportSpecResults).toHaveBeenCalledWith('blah', 'foo');
     expect(fakeReporter2.reportSpecResults).toHaveBeenCalledWith('blah', 'foo');
   });
 
-  it("should quietly skip delegating to any subreporters which lack the given method", function() {
+  it("should quietly skip delegating to any subreporters which lack the given method", function () {
     multiReporter.reportRunnerStarting('blah', 'foo');
     expect(fakeReporter2.reportRunnerStarting).toHaveBeenCalledWith('blah', 'foo');
   });

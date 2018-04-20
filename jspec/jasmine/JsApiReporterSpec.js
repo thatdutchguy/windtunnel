@@ -1,30 +1,30 @@
-describe('jasmine.jsApiReporter', function() {
+describe('jasmine.jsApiReporter', function () {
   describe('results', function () {
     var reporter, spec1, spec2, spec3, expectedSpec1Results, expectedSpec2Results;
     var env;
     var suite, nestedSuite, nestedSpec;
 
-    beforeEach(function() {
+    beforeEach(function () {
       env = new jasmine.Env();
       env.updateInterval = 0;
 
-      suite = env.describe("top-level suite", function() {
-        spec1 = env.it("spec 1", function() {
+      suite = env.describe("top-level suite", function () {
+        spec1 = env.it("spec 1", function () {
           this.expect(true).toEqual(true);
 
         });
 
-        spec2 = env.it("spec 2", function() {
+        spec2 = env.it("spec 2", function () {
           this.expect(true).toEqual(false);
         });
 
-        nestedSuite = env.describe("nested suite", function() {
-          nestedSpec = env.it("nested spec", function() {
+        nestedSuite = env.describe("nested suite", function () {
+          nestedSpec = env.it("nested spec", function () {
             expect(true).toEqual(true);
           });
         });
 
-        spec3 = env.it("spec 3", function() {
+        spec3 = env.it("spec 3", function () {
           this.log('some debug message');
         });
       });
@@ -54,25 +54,27 @@ describe('jasmine.jsApiReporter', function() {
       expect(reporter.results()[spec2.id]).toEqual(expectedSpec2Results);
     });
 
-    it("should return nested suites as children of their parents", function() {
+    it("should return nested suites as children of their parents", function () {
       expect(reporter.suites()).toEqual([
-        { id: 0, name: 'top-level suite', type: 'suite',
+        {
+          id: 0, name: 'top-level suite', type: 'suite',
           children: [
-            { id: 0, name: 'spec 1', type: 'spec', children: [ ] },
-            { id: 1, name: 'spec 2', type: 'spec', children: [ ] },
-            { id: 1, name: 'nested suite', type: 'suite',
+            {id: 0, name: 'spec 1', type: 'spec', children: []},
+            {id: 1, name: 'spec 2', type: 'spec', children: []},
+            {
+              id: 1, name: 'nested suite', type: 'suite',
               children: [
-                { id: 2, name: 'nested spec', type: 'spec', children: [ ] }
+                {id: 2, name: 'nested spec', type: 'spec', children: []}
               ]
             },
-            { id: 3, name: 'spec 3', type: 'spec', children: [ ] }
+            {id: 3, name: 'spec 3', type: 'spec', children: []}
           ]
         }
       ]);
     });
 
-    describe("#summarizeResult_", function() {
-      it("should summarize a passing result", function() {
+    describe("#summarizeResult_", function () {
+      it("should summarize a passing result", function () {
         var result = reporter.results()[spec1.id];
         var summarizedResult = reporter.summarizeResult_(result);
         expect(summarizedResult.result).toEqual('passed');
@@ -84,14 +86,14 @@ describe('jasmine.jsApiReporter', function() {
         expect(summarizedResult.messages[0].trace.stack).toBeUndefined();
       });
 
-      it("should have a stack trace for failing specs", function() {
+      it("should have a stack trace for failing specs", function () {
         var result = reporter.results()[spec2.id];
         var summarizedResult = reporter.summarizeResult_(result);
         expect(summarizedResult.result).toEqual('failed');
         expect(summarizedResult.messages[0].trace.stack).toEqual(result.messages[0].trace.stack);
       });
 
-      it("should have messages for specs with messages", function() {
+      it("should have messages for specs with messages", function () {
         var result = reporter.results()[spec3.id];
         var summarizedResult = reporter.summarizeResult_(result);
         expect(summarizedResult.result).toEqual('passed');

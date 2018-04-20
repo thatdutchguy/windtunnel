@@ -1,8 +1,8 @@
 describe('Spies', function () {
-  it('should replace the specified function with a spy object', function() {
+  it('should replace the specified function with a spy object', function () {
     var originalFunctionWasCalled = false;
     var TestClass = {
-      someFunction: function() {
+      someFunction: function () {
         originalFunctionWasCalled = true;
       }
     };
@@ -22,10 +22,10 @@ describe('Spies', function () {
     expect(TestClass.someFunction.mostRecentCall.args).toEqual(['bar']);
   });
 
-  it('should allow you to view args for a particular call', function() {
+  it('should allow you to view args for a particular call', function () {
     var originalFunctionWasCalled = false;
     var TestClass = {
-      someFunction: function() {
+      someFunction: function () {
         originalFunctionWasCalled = true;
       }
     };
@@ -38,12 +38,12 @@ describe('Spies', function () {
     expect(TestClass.someFunction.mostRecentCall.args).toEqual(['bar']);
   });
 
-  it('should be possible to call through to the original method, or return a specific result', function() {
+  it('should be possible to call through to the original method, or return a specific result', function () {
     var originalFunctionWasCalled = false;
     var passedArgs;
     var passedObj;
     var TestClass = {
-      someFunction: function() {
+      someFunction: function () {
         originalFunctionWasCalled = true;
         passedArgs = arguments;
         passedObj = this;
@@ -60,10 +60,10 @@ describe('Spies', function () {
     expect(TestClass.someFunction.wasCalled).toEqual(true);
   });
 
-  it('should be possible to return a specific value', function() {
+  it('should be possible to return a specific value', function () {
     var originalFunctionWasCalled = false;
     var TestClass = {
-      someFunction: function() {
+      someFunction: function () {
         originalFunctionWasCalled = true;
         return "return value from original function";
       }
@@ -76,10 +76,10 @@ describe('Spies', function () {
     expect(originalFunctionWasCalled).toEqual(false);
   });
 
-  it('should be possible to throw a specific error', function() {
+  it('should be possible to throw a specific error', function () {
     var originalFunctionWasCalled = false;
     var TestClass = {
-      someFunction: function() {
+      someFunction: function () {
         originalFunctionWasCalled = true;
         return "return value from original function";
       }
@@ -96,19 +96,19 @@ describe('Spies', function () {
     expect(originalFunctionWasCalled).toEqual(false);
   });
 
-  it('should be possible to call a specified function', function() {
+  it('should be possible to call a specified function', function () {
     var originalFunctionWasCalled = false;
     var fakeFunctionWasCalled = false;
     var passedArgs;
     var passedObj;
     var TestClass = {
-      someFunction: function() {
+      someFunction: function () {
         originalFunctionWasCalled = true;
         return "return value from original function";
       }
     };
 
-    this.spyOn(TestClass, 'someFunction').andCallFake(function() {
+    this.spyOn(TestClass, 'someFunction').andCallFake(function () {
       fakeFunctionWasCalled = true;
       passedArgs = arguments;
       passedObj = this;
@@ -124,10 +124,10 @@ describe('Spies', function () {
     expect(TestClass.someFunction.wasCalled).toEqual(true);
   });
 
-  it('is torn down when this.removeAllSpies is called', function() {
+  it('is torn down when this.removeAllSpies is called', function () {
     var originalFunctionWasCalled = false;
     var TestClass = {
-      someFunction: function() {
+      someFunction: function () {
         originalFunctionWasCalled = true;
       }
     };
@@ -142,7 +142,7 @@ describe('Spies', function () {
     expect(originalFunctionWasCalled).toEqual(true);
   });
 
-  it('calls removeAllSpies during spec finish', function() {
+  it('calls removeAllSpies during spec finish', function () {
     var test = new jasmine.Spec(new jasmine.Env(), {}, 'sample test');
 
     this.spyOn(test, 'removeAllSpies');
@@ -152,9 +152,11 @@ describe('Spies', function () {
     expect(test.removeAllSpies).wasCalled();
   });
 
-  it('throws an exception when some method is spied on twice', function() {
-    var TestClass = { someFunction: function() {
-    } };
+  it('throws an exception when some method is spied on twice', function () {
+    var TestClass = {
+      someFunction: function () {
+      }
+    };
     this.spyOn(TestClass, 'someFunction');
     var exception;
     try {
@@ -165,8 +167,11 @@ describe('Spies', function () {
     expect(exception).toBeDefined();
   });
 
-  it('should be able to reset a spy', function() {
-    var TestClass = { someFunction: function() {} };
+  it('should be able to reset a spy', function () {
+    var TestClass = {
+      someFunction: function () {
+      }
+    };
     this.spyOn(TestClass, 'someFunction');
 
     expect(TestClass.someFunction).not.toHaveBeenCalled();
@@ -177,22 +182,22 @@ describe('Spies', function () {
     expect(TestClass.someFunction.callCount).toEqual(0);
   });
 
-  describe("createSpyObj", function() {
-    it("should create an object with a bunch of spy methods when you call jasmine.createSpyObj()", function() {
+  describe("createSpyObj", function () {
+    it("should create an object with a bunch of spy methods when you call jasmine.createSpyObj()", function () {
       var spyObj = jasmine.createSpyObj('BaseName', ['method1', 'method2']);
-      expect(spyObj).toEqual({ method1: jasmine.any(Function), method2: jasmine.any(Function)});
+      expect(spyObj).toEqual({method1: jasmine.any(Function), method2: jasmine.any(Function)});
       expect(spyObj.method1.identity).toEqual('BaseName.method1');
       expect(spyObj.method2.identity).toEqual('BaseName.method2');
     });
 
-    it("should throw if you do not pass an array argument", function() {
-      expect(function() {
+    it("should throw if you do not pass an array argument", function () {
+      expect(function () {
         jasmine.createSpyObj('BaseName');
       }).toThrow('createSpyObj requires a non-empty array of method names to create spies for');
     });
 
-    it("should throw if you pass an empty array argument", function() {
-      expect(function() {
+    it("should throw if you pass an empty array argument", function () {
+      expect(function () {
         jasmine.createSpyObj('BaseName');
       }).toThrow('createSpyObj requires a non-empty array of method names to create spies for');
     });

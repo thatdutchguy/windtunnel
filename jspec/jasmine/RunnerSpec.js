@@ -1,8 +1,8 @@
-describe('RunnerTest', function() {
+describe('RunnerTest', function () {
   var fakeTimer;
   var env;
 
-  beforeEach(function() {
+  beforeEach(function () {
     env = new jasmine.Env();
     env.updateInterval = 0;
 
@@ -13,7 +13,7 @@ describe('RunnerTest', function() {
     env.clearInterval = fakeTimer.clearInterval;
   });
 
-  describe('beforeEach', function() {
+  describe('beforeEach', function () {
     it('should run before each spec for all suites', function () {
       var foo;
       env.beforeEach(function () {
@@ -21,18 +21,18 @@ describe('RunnerTest', function() {
       });
 
       env.describe('suite 1', function () {
-        env.it('test 1-1', function() {
+        env.it('test 1-1', function () {
           foo++;
           this.expect(foo).toEqual(1);
         });
-        env.it('test 1-2', function() {
+        env.it('test 1-2', function () {
           foo++;
           this.expect(foo).toEqual(1);
         });
       });
 
       env.describe('suite 2', function () {
-        env.it('test 2-1', function() {
+        env.it('test 2-1', function () {
           foo++;
           this.expect(foo).toEqual(1);
         });
@@ -53,18 +53,18 @@ describe('RunnerTest', function() {
       });
 
       env.describe('suite 1', function () {
-        env.it('test 1-1', function() {
+        env.it('test 1-1', function () {
           foo++;
           this.expect(foo).toEqual(1);
         });
-        env.it('test 1-2', function() {
+        env.it('test 1-2', function () {
           foo++;
           this.expect(foo).toEqual(1);
         });
       });
 
       env.describe('suite 2', function () {
-        env.it('test 2-1', function() {
+        env.it('test 2-1', function () {
           foo++;
           this.expect(foo).toEqual(1);
         });
@@ -77,7 +77,7 @@ describe('RunnerTest', function() {
     });
   });
 
-  describe('afterEach', function() {
+  describe('afterEach', function () {
     it('should run after each spec for all suites', function () {
       var foo = 3;
       env.afterEach(function () {
@@ -85,16 +85,16 @@ describe('RunnerTest', function() {
       });
 
       env.describe('suite 1', function () {
-        env.it('test 1-1', function() {
+        env.it('test 1-1', function () {
           this.expect(foo).toEqual(3);
         });
-        env.it('test 1-2', function() {
+        env.it('test 1-2', function () {
           this.expect(foo).toEqual(2);
         });
       });
 
       env.describe('suite 2', function () {
-        env.it('test 2-1', function() {
+        env.it('test 2-1', function () {
           this.expect(foo).toEqual(1);
         });
       });
@@ -108,9 +108,9 @@ describe('RunnerTest', function() {
   });
 
 
-  it('should run child suites and specs and generate results when execute is called', function() {
+  it('should run child suites and specs and generate results when execute is called', function () {
     env.describe('one suite description', function () {
-      env.it('should be a test', function() {
+      env.it('should be a test', function () {
         this.runs(function () {
           this.expect(true).toEqual(true);
         });
@@ -118,7 +118,7 @@ describe('RunnerTest', function() {
     });
 
     env.describe('another suite description', function () {
-      env.it('should be another test', function() {
+      env.it('should be another test', function () {
         this.runs(function () {
           this.expect(true).toEqual(false);
         });
@@ -134,9 +134,9 @@ describe('RunnerTest', function() {
   });
 
 
-  it('should ignore suites that have been x\'d', function() {
+  it('should ignore suites that have been x\'d', function () {
     env.xdescribe('one suite description', function () {
-      env.it('should be a test', function() {
+      env.it('should be a test', function () {
         this.runs(function () {
           this.expect(true).toEqual(true);
         });
@@ -144,7 +144,7 @@ describe('RunnerTest', function() {
     });
 
     env.describe('another suite description', function () {
-      env.it('should be another test', function() {
+      env.it('should be another test', function () {
         this.runs(function () {
           this.expect(true).toEqual(false);
         });
@@ -159,9 +159,9 @@ describe('RunnerTest', function() {
     expect(runnerResults.failedCount).toEqual(1);
   });
 
-  it('should roll up results from all specs', function() {
+  it('should roll up results from all specs', function () {
     env.describe('one suite description', function () {
-      env.it('should be a test', function() {
+      env.it('should be a test', function () {
         this.runs(function () {
           this.expect(true).toEqual(true);
         });
@@ -169,7 +169,7 @@ describe('RunnerTest', function() {
     });
 
     env.describe('another suite description', function () {
-      env.it('should be another test', function() {
+      env.it('should be another test', function () {
         this.runs(function () {
           this.expect(true).toEqual(false);
         });
@@ -191,9 +191,9 @@ describe('RunnerTest', function() {
       env.addReporter(fakeReporter);
     });
 
-    it('should report runner results when the runner has completed running', function() {
+    it('should report runner results when the runner has completed running', function () {
       env.describe('one suite description', function () {
-        env.it('should be a test', function() {
+        env.it('should be a test', function () {
           this.runs(function () {
             this.expect(true).toEqual(true);
           });
@@ -201,7 +201,7 @@ describe('RunnerTest', function() {
       });
 
       env.describe('another suite description', function () {
-        env.it('should be another test', function() {
+        env.it('should be another test', function () {
           this.waits(200);
           this.runs(function () {
             this.expect(true).toEqual(false);
@@ -219,7 +219,7 @@ describe('RunnerTest', function() {
     });
   });
 
-  it("should report when the tests start running", function() {
+  it("should report when the tests start running", function () {
     var fakeReporter = jasmine.createSpyObj("fakeReporter", ["log", "reportRunnerStarting"]);
     env.addReporter(fakeReporter);
 
@@ -235,7 +235,7 @@ describe('RunnerTest', function() {
     expect(runner.queue.start).toHaveBeenCalled();
   });
 
-  describe("when suites are nested", function() {
+  describe("when suites are nested", function () {
     var suite1, suite2, suite3;
 
     function suiteNames(suites) {
@@ -246,20 +246,21 @@ describe('RunnerTest', function() {
       return suiteDescriptions;
     }
 
-    beforeEach(function() {
-      suite1 = env.describe("suite 1", function() {
-        suite2 = env.describe("suite 2", function() {
+    beforeEach(function () {
+      suite1 = env.describe("suite 1", function () {
+        suite2 = env.describe("suite 2", function () {
         });
       });
-      suite3 = env.describe("suite 3", function() {});
+      suite3 = env.describe("suite 3", function () {
+      });
     });
 
-    it("#suites should return a flat array of all suites, including nested suites", function() {
+    it("#suites should return a flat array of all suites, including nested suites", function () {
       var suites = env.currentRunner().suites();
       expect(suiteNames(suites)).toEqual([suite1.getFullName(), suite2.getFullName(), suite3.getFullName()]);
     });
 
-    it("#topLevelSuites should return a flat array of all top-level suites only", function() {
+    it("#topLevelSuites should return a flat array of all top-level suites only", function () {
       var suites = env.currentRunner().topLevelSuites();
       expect(suiteNames(suites)).toEqual([suite1.getFullName(), suite3.getFullName()]);
     });

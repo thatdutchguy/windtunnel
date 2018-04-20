@@ -1,13 +1,13 @@
 describe("MockClock", function () {
 
-  beforeEach(function() {
-    jasmine.Clock.useMock();    
+  beforeEach(function () {
+    jasmine.Clock.useMock();
   });
 
   describe("setTimeout", function () {
-    it("should mock the clock when useMock is in a beforeEach", function() {
+    it("should mock the clock when useMock is in a beforeEach", function () {
       var expected = false;
-      setTimeout(function() {
+      setTimeout(function () {
         expected = true;
       }, 30000);
       expect(expected).toBe(false);
@@ -17,9 +17,9 @@ describe("MockClock", function () {
   });
 
   describe("setInterval", function () {
-    it("should mock the clock when useMock is in a beforeEach", function() {
+    it("should mock the clock when useMock is in a beforeEach", function () {
       var interval = 0;
-      setInterval(function() {
+      setInterval(function () {
         interval++;
       }, 30000);
       expect(interval).toEqual(0);
@@ -32,7 +32,7 @@ describe("MockClock", function () {
     });
   });
 
-  it("shouldn't complain if you call jasmine.Clock.useMock() more than once", function() {
+  it("shouldn't complain if you call jasmine.Clock.useMock() more than once", function () {
     jasmine.Clock.useMock();
   });
 });

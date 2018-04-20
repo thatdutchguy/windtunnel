@@ -1,12 +1,12 @@
-describe('Exceptions:', function() {
+describe('Exceptions:', function () {
   var env;
 
-  beforeEach(function() {
+  beforeEach(function () {
     env = new jasmine.Env();
     env.updateInterval = 0;
   });
 
-  it('jasmine.formatException formats Firefox exception messages as expected', function() {
+  it('jasmine.formatException formats Firefox exception messages as expected', function () {
     var sampleFirefoxException = {
       fileName: 'foo.js',
       line: '1978',
@@ -19,7 +19,7 @@ describe('Exceptions:', function() {
     expect(jasmine.util.formatException(sampleFirefoxException)).toEqual(expected);
   });
 
-  it('jasmine.formatException formats Webkit exception messages as expected', function() {
+  it('jasmine.formatException formats Webkit exception messages as expected', function () {
     var sampleWebkitException = {
       sourceURL: 'foo.js',
       lineNumber: '1978',
@@ -32,20 +32,20 @@ describe('Exceptions:', function() {
     expect(jasmine.util.formatException(sampleWebkitException)).toEqual(expected);
   });
 
-  it('should handle exceptions thrown, but continue', function() {
+  it('should handle exceptions thrown, but continue', function () {
     var fakeTimer = new jasmine.FakeTimer();
     env.setTimeout = fakeTimer.setTimeout;
     env.clearTimeout = fakeTimer.clearTimeout;
     env.setInterval = fakeTimer.setInterval;
     env.clearInterval = fakeTimer.clearInterval;
-    
+
     //we run two exception tests to make sure we continue after throwing an exception
     var suite = env.describe('Suite for handles exceptions', function () {
-      env.it('should be a test that fails because it throws an exception', function() {
+      env.it('should be a test that fails because it throws an exception', function () {
         throw new Error('fake error 1');
       });
 
-      env.it('should be another test that fails because it throws an exception', function() {
+      env.it('should be another test that fails because it throws an exception', function () {
         this.runs(function () {
           throw new Error('fake error 2');
         });
@@ -54,11 +54,11 @@ describe('Exceptions:', function() {
         });
       });
 
-      env.it('should be a passing test that runs after exceptions are thrown', function() {
+      env.it('should be a passing test that runs after exceptions are thrown', function () {
         this.expect(true).toEqual(true);
       });
 
-      env.it('should be another test that fails because it throws an exception after a wait', function() {
+      env.it('should be another test that fails because it throws an exception after a wait', function () {
         this.runs(function () {
           var foo = 'foo';
         });
@@ -68,7 +68,7 @@ describe('Exceptions:', function() {
         });
       });
 
-      env.it('should be a passing test that runs after exceptions are thrown from a async test', function() {
+      env.it('should be a passing test that runs after exceptions are thrown from a async test', function () {
         this.expect(true).toEqual(true);
       });
     });
@@ -105,45 +105,45 @@ describe('Exceptions:', function() {
 
 
   it("should handle exceptions thrown directly in top-level describe blocks and continue", function () {
-     var suite = env.describe("a top level describe block that throws an exception", function () {
-       env.it("is a test that should pass", function () {
-         this.expect(true).toEqual(true);
-       });
+    var suite = env.describe("a top level describe block that throws an exception", function () {
+      env.it("is a test that should pass", function () {
+        this.expect(true).toEqual(true);
+      });
 
-       throw new Error("top level error");
-     });
+      throw new Error("top level error");
+    });
 
-     suite.execute();
-     var suiteResults = suite.results();
-     var specResults = suiteResults.getItems();
+    suite.execute();
+    var suiteResults = suite.results();
+    var specResults = suiteResults.getItems();
 
-     expect(suiteResults.passed()).toEqual(false);
-     expect(specResults.length).toEqual(2);
+    expect(suiteResults.passed()).toEqual(false);
+    expect(specResults.length).toEqual(2);
 
-     expect(specResults[1].description).toMatch(/encountered a declaration exception/);
-   });
+    expect(specResults[1].description).toMatch(/encountered a declaration exception/);
+  });
 
-   it("should handle exceptions thrown directly in nested describe blocks and continue", function () {
-     var suite = env.describe("a top level describe", function () {
-       env.describe("a mid-level describe that throws an exception", function () {
-         env.it("is a test that should pass", function () {
-           this.expect(true).toEqual(true);
-         });
+  it("should handle exceptions thrown directly in nested describe blocks and continue", function () {
+    var suite = env.describe("a top level describe", function () {
+      env.describe("a mid-level describe that throws an exception", function () {
+        env.it("is a test that should pass", function () {
+          this.expect(true).toEqual(true);
+        });
 
-         throw new Error("a mid-level error");
-       });
-     });
+        throw new Error("a mid-level error");
+      });
+    });
 
-     suite.execute();
-     var suiteResults = suite.results();
-     var specResults = suiteResults.getItems();
+    suite.execute();
+    var suiteResults = suite.results();
+    var specResults = suiteResults.getItems();
 
-     expect(suiteResults.passed()).toEqual(false);
-     expect(specResults.length).toEqual(1);
+    expect(suiteResults.passed()).toEqual(false);
+    expect(specResults.length).toEqual(1);
 
-     var nestedSpecResults = specResults[0].getItems();
+    var nestedSpecResults = specResults[0].getItems();
 
-     expect(nestedSpecResults.length).toEqual(2);
-     expect(nestedSpecResults[1].description).toMatch(/encountered a declaration exception/);
-   });
+    expect(nestedSpecResults.length).toEqual(2);
+    expect(nestedSpecResults[1].description).toMatch(/encountered a declaration exception/);
+  });
 });

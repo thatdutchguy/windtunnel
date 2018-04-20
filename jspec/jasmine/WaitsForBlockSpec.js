@@ -1,6 +1,6 @@
 describe('WaitsForBlock', function () {
   var env, suite, timeout, spec, message, onComplete, fakeTimer;
-  beforeEach(function() {
+  beforeEach(function () {
     env = new jasmine.Env();
     env.updateInterval = 0;
     suite = new jasmine.Suite(env, 'suite 1');
@@ -10,39 +10,39 @@ describe('WaitsForBlock', function () {
     onComplete = jasmine.createSpy("onComplete");
   });
 
-  describe("jasmine.VERBOSE", function() {
+  describe("jasmine.VERBOSE", function () {
     var jasmineVerboseOriginal;
-    beforeEach(function() {
+    beforeEach(function () {
       jasmineVerboseOriginal = jasmine.VERBOSE;
       spyOn(env.reporter, 'log');
 
     });
     it('do not show information if jasmine.VERBOSE is set to false', function () {
-        jasmine.VERBOSE = false;
-        var latchFunction = function() {
-          return true;
-        };
-        var block = new jasmine.WaitsForBlock(env, timeout, latchFunction, message, spec);
-        expect(env.reporter.log).not.toHaveBeenCalled();
-        block.execute(onComplete);
-        expect(env.reporter.log).not.toHaveBeenCalled();
-        jasmine.VERBOSE = jasmineVerboseOriginal;
-      });
+      jasmine.VERBOSE = false;
+      var latchFunction = function () {
+        return true;
+      };
+      var block = new jasmine.WaitsForBlock(env, timeout, latchFunction, message, spec);
+      expect(env.reporter.log).not.toHaveBeenCalled();
+      block.execute(onComplete);
+      expect(env.reporter.log).not.toHaveBeenCalled();
+      jasmine.VERBOSE = jasmineVerboseOriginal;
+    });
     it('show information if jasmine.VERBOSE is set to true', function () {
-        jasmine.VERBOSE = true;
-        var latchFunction = function() {
-          return true;
-        };
-        var block = new jasmine.WaitsForBlock(env, timeout, latchFunction, message, spec);
-        expect(env.reporter.log).not.toHaveBeenCalled();
-        block.execute(onComplete);
-        expect(env.reporter.log).toHaveBeenCalled();
-        jasmine.VERBOSE = jasmineVerboseOriginal;
-      });
+      jasmine.VERBOSE = true;
+      var latchFunction = function () {
+        return true;
+      };
+      var block = new jasmine.WaitsForBlock(env, timeout, latchFunction, message, spec);
+      expect(env.reporter.log).not.toHaveBeenCalled();
+      block.execute(onComplete);
+      expect(env.reporter.log).toHaveBeenCalled();
+      jasmine.VERBOSE = jasmineVerboseOriginal;
+    });
   });
 
   it('onComplete should be called if the latchFunction returns true', function () {
-    var latchFunction = function() {
+    var latchFunction = function () {
       return true;
     };
     var block = new jasmine.WaitsForBlock(env, timeout, latchFunction, message, spec);
@@ -53,7 +53,7 @@ describe('WaitsForBlock', function () {
 
   it('latchFunction should run in same scope as spec', function () {
     var result;
-    var latchFunction = function() {
+    var latchFunction = function () {
       result = this.scopedValue;
     };
     spec.scopedValue = 'foo';
@@ -62,7 +62,7 @@ describe('WaitsForBlock', function () {
     expect(result).toEqual('foo');
   });
 
-  it('should fail spec and call onComplete if there is an error in the latchFunction', function() {
+  it('should fail spec and call onComplete if there is an error in the latchFunction', function () {
     var latchFunction = jasmine.createSpy('latchFunction').andThrow('some error');
     spyOn(spec, 'fail');
     var block = new jasmine.WaitsForBlock(env, timeout, latchFunction, message, spec);
@@ -71,9 +71,9 @@ describe('WaitsForBlock', function () {
     expect(onComplete).toHaveBeenCalled();
   });
 
-  describe("if latchFunction returns false", function() {
+  describe("if latchFunction returns false", function () {
     var latchFunction, fakeTimer;
-    beforeEach(function() {
+    beforeEach(function () {
       latchFunction = jasmine.createSpy('latchFunction').andReturn(false);
       fakeTimer = new jasmine.FakeTimer();
       env.setTimeout = fakeTimer.setTimeout;

@@ -2,18 +2,22 @@ html, body {
   padding: 0;
   margin: 0;
 }
+
 body {
   font-size: 80%;
   font-family: "Lucida Grande", Helvetica, sans-serif;
 }
+
 #header {
   background: #000;
   color: #fff;
   height: 4em;
 }
+
 #header.passed {
   background-color: #65C400;
 }
+
 #header.failed {
   background-color: #c40d0d;
 }
@@ -32,9 +36,11 @@ body {
   right: 0;
   top: 0;
 }
+
 .summary p {
   margin: 0 0 0 2px;
 }
+
 .summary .totals {
   font-size: 1.2em;
 }
@@ -49,15 +55,18 @@ body {
   padding: 0 0 5px;
   font-size: 11px;
 }
+
 .group-name {
   background-color: #000;
   color: #fff;
   font-weight: bold;
   padding: 3px;
 }
+
 .group.failed .group-name {
   background-color: #c40d0d;
 }
+
 .group.passed .group-name {
   background-color: #65C400;
 }
@@ -66,27 +75,32 @@ body {
   margin: 5px 0 5px 5px;
   padding: 3px 3px 3px 18px;
 }
+
 .example.failed {
   background-color: #fffbd3;
   border-bottom: 1px solid #c40d0d;
   border-left: 5px solid #c40d0d;
   color: #C20000;
 }
+
 .example.passed {
   background-color: #DBFFB4;
   border-bottom: 1px solid #65C400;
   border-left: 5px solid #65C400;
   color: #3D7700;
 }
+
 .example.skipped {
   background-color: #FCFFB4;
   border-bottom: 1px solid #BDC400;
   border-left: 5px solid #BDC400;
   color: #000;
 }
+
 .example .backtrace {
   color: #000;
 }
+
 .example .log {
   background: #fff;
   color: #000;

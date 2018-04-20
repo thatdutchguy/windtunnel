@@ -1,10 +1,11 @@
-describe('jasmine.NestedResults', function() {
-  it('#addResult increments counters', function() {
+describe('jasmine.NestedResults', function () {
+  it('#addResult increments counters', function () {
     // Leaf case
     var results = new jasmine.NestedResults();
 
     results.addResult(new jasmine.ExpectationResult({
-      matcherName: "foo", passed: true, message: 'Passed.', actual: 'bar', expected: 'bar'}
+        matcherName: "foo", passed: true, message: 'Passed.', actual: 'bar', expected: 'bar'
+      }
     ));
 
     expect(results.getItems().length).toEqual(1);
@@ -22,11 +23,11 @@ describe('jasmine.NestedResults', function() {
     expect(results.failedCount).toEqual(1);
   });
 
-  it('should roll up counts for nested results', function() {
+  it('should roll up counts for nested results', function () {
     // Branch case
     var leafResultsOne = new jasmine.NestedResults();
     leafResultsOne.addResult(new jasmine.ExpectationResult({
-      matcherName: "toSomething", passed: true, message: 'message', actual: '', expected:''
+      matcherName: "toSomething", passed: true, message: 'message', actual: '', expected: ''
     }));
 
     leafResultsOne.addResult(new jasmine.ExpectationResult({

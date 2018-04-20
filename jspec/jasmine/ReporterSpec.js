@@ -1,27 +1,27 @@
-describe('jasmine.Reporter', function() {
+describe('jasmine.Reporter', function () {
   var env;
 
 
-  beforeEach(function() {
+  beforeEach(function () {
     env = new jasmine.Env();
     env.updateInterval = 0;
   });
 
-  it('should get called from the test runner', function() {
+  it('should get called from the test runner', function () {
     env.describe('Suite for JSON Reporter with Callbacks', function () {
-      env.it('should be a test', function() {
+      env.it('should be a test', function () {
         this.runs(function () {
           this.expect(true).toEqual(true);
         });
       });
-      env.it('should be a failing test', function() {
+      env.it('should be a failing test', function () {
         this.runs(function () {
           this.expect(false).toEqual(true);
         });
       });
     });
     env.describe('Suite for JSON Reporter with Callbacks 2', function () {
-      env.it('should be a test', function() {
+      env.it('should be a test', function () {
         this.runs(function () {
           this.expect(true).toEqual(true);
         });
@@ -34,13 +34,13 @@ describe('jasmine.Reporter', function() {
     var baz = 0;
 
     env.addReporter({
-      reportSpecResults: function() {
+      reportSpecResults: function () {
         foo++;
       },
-      reportSuiteResults: function() {
+      reportSuiteResults: function () {
         bar++;
       },
-      reportRunnerResults: function() {
+      reportRunnerResults: function () {
         baz++;
       }
     });
