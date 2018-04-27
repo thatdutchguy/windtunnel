@@ -1,7 +1,7 @@
 {
-  "name": "windtunnel",
+  "name": "@summon/windtunnel",
   "description": "Easy JavaScript testing",
-  "url": "https://github.com/thatdutchguy/windtunnel",
+  "url": "https://github.com/sposmen/windtunnel",
   "version": "0.1.0",
   "author": "Daniël van de Burgt <thatdutchguy@secretlymexico.com>",
   "bin": {
@@ -12,15 +12,28 @@
     "node": ">= 8.0.0"
   },
   "contributors": [
-    {
-      "name": "Jaime Giraldo",
-      "email": "sposmen@gmail.com"
-    }
+    "Jaime Giraldo <sposmen@gmail.com>"
   ],
   "dependencies": {
     "coffee-script": "^1.12.7",
     "glob": "7.1.2",
     "jsdom": "11.8.0",
     "nomnom": "1.5.1"
-  }
+  },
+  "directories": {
+    "lib": "lib"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sposmen/windtunnel.git"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sposmen/windtunnel/issues"
+  },
+  "homepage": "https://github.com/sposmen/windtunnel#readme"
 }
