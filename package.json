@@ -2,7 +2,7 @@
   "name": "@summon/windtunnel",
   "description": "Easy JavaScript testing",
   "url": "https://github.com/sposmen/windtunnel",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": "Daniël van de Burgt <thatdutchguy@secretlymexico.com>",
   "bin": {
     "wt": "./bin/wt"

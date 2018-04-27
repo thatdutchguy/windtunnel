@@ -5,12 +5,14 @@ var path = require('path'),
 
 var wt = require(path.join(__dirname, '..', 'lib', 'windtunnel'));
 
+var version = require(path.join(__dirname, '..', 'package.json')).version;
+
 var cmdLine = {
   version: {
     string: "--version",
     help: "print version",
     callback: function () {
-      return "Wind Tunnel version " + wt.version.join('.');
+      return "Wind Tunnel version " + version;
     }
   },
   path: {
